@@ -16,6 +16,6 @@ class TaskController extends Controller
     {
         $task = DB::table('tasks')->find($id);
 
-        return view('/show', compact('task'));
+        return view('show', compact('task'));
     }
 }
