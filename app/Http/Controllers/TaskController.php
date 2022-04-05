@@ -10,7 +10,7 @@ class TaskController extends Controller
     public function index(){
         $tasks = DB::table('tasks')->get();
 
-        return view('task', compact('tasks'));
+        return view('tasks.index', compact('tasks'));
     }
     public function show($id)
     {

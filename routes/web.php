@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/task',[TaskController::class, 'index']);
-Route::get('/task/{id}', [TaskController::class, 'show']) ;
+
 Route::get('app',function(){
 return view('layout.app');
 });
