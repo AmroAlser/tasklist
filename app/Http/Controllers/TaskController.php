@@ -18,4 +18,12 @@ class TaskController extends Controller
 
         return view('show', compact('task'));
     }
+    public function store(Request $request){
+        $task = DB::table('tasks')->insert([
+            'name'=>$request->name,
+            'created_at' => now(),
+            'updated_at'=>now()
+        ]);
+        return redirect()->back();
+    }
 }
