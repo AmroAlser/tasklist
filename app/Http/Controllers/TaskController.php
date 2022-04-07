@@ -26,4 +26,13 @@ class TaskController extends Controller
         ]);
         return redirect()->back();
     }
+    public function delete ($id){
+        DB::table('tasks')->where('id','=',$id)->delete();
+        return redirect()->back();
+    }
+    public function update($id)
+    {
+        DB::table('tasks')->where('id', '=', $id)->update(['options->enabled' => true]);
+        return redirect()->back();
+    }
 }
