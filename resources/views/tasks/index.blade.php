@@ -76,7 +76,7 @@
                                  <td>
                                      <form action="{{ '/tasks/edit/' . $task->id }}" method="POST">
                                          @csrf
-                                         
+
                                          <button type="submit" class="btn btn-primary ">
                                              <i class="fa fa-pencil-square-o"></i>Eidt
                                          </button>

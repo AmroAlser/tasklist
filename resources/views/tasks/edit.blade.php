@@ -23,6 +23,8 @@
                      {{ csrf_field() }}
                      {{ method_field('put') }}
                      <!-- Task Name -->
+
+
                      <div class="form-group">
                          <label for="task-name" class="col-sm-3 control-label">Task</label>
 
@@ -59,33 +61,33 @@
                          <th>&nbsp;</th>
                      </thead>
                      <tbody>
-                          @foreach ($tasks as $num => $task)
-                         <tr>
-                             <td class="table-text">{{ ++$num }}</td>
-                             <td class="table-text">
-                                 <div>{{ $task->name }}</div>
-                             </td>
+                         @foreach ($tasks as $num => $task)
+                             <tr>
+                                 <td class="table-text">{{ ++$num }}</td>
+                                 <td class="table-text">
+                                     <div>{{ $task->name }}</div>
+                                 </td>
 
-                             <!-- Task Delete Button -->
-                             <td>
-                                 <form action="#" method="POST">
-                                     @csrf
-
-                                     <button type="submit" class="btn btn-danger">
-                                         <i class="fa fa-btn fa-trash"></i>Delete
-                                     </button>
-                                 </form>
-                             </td>
-                             <td>
-                                 <form action="#" method="POST">
-                                     @csrf
-                                     <button type="submit" class="btn btn-primary ">
-                                         <i class="fa fa-pencil-square-o"></i>Eidt
-                                     </button>
-                                 </form>
-                             </td>
-                         </tr>
-                     @endforeach
+                                 <!-- Task Delete Button -->
+                                 <td>
+                                     <form action="{{ '/tasks/delete/' . $task->id }}" method="POST">
+                                         {{ csrf_field() }}
+                                         {{ method_field('delete') }}
+                                         <button type="submit" class="btn btn-danger">
+                                             <i class="fa fa-btn fa-trash"></i>Delete
+                                         </button>
+                                     </form>
+                                 </td>
+                                 <td>
+                                     <form action="{{ '/tasks/edit/' . $task->id }}" method="POST">
+                                         @csrf
+                                         <button type="submit" class="btn btn-primary ">
+                                             <i class="fa fa-pencil-square-o"></i>Eidt
+                                         </button>
+                                     </form>
+                                 </td>
+                             </tr>
+                         @endforeach
 
                      </tbody>
                  </table>

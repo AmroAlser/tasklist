@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     //
     public function index(){
-      $tasks = DB::table('tasks')->get();
+      $tasks = DB::table('tasks')->orderBy('name')->get();
 
       //  $tasks = Task::all();
         return view('tasks.index', compact('tasks'));
@@ -41,22 +41,23 @@ class TaskController extends Controller
     }
     public function edit($id)
     {
-        $tasks = DB::table('tasks')->get();
-        $task = DB::table('tasks')->find($id);
+       $tasks= DB::table('tasks')->orderBy('name')->get();
+         $task=DB::table('tasks')->find($id);
         //$task = Task::find($id);
 
         return view('tasks.edit', compact('task','tasks'));
+
     }
 
     public function update(Request $request, $id)
     {
        // $task = Task::find($id);
 
-        $task=DB::table('tasks')
+      $task= DB::table('tasks')
             ->where('id', '=',$id)
             ->update(['name' => $request->name]);
 
-        $tasks = DB::table('tasks')->get();
+       $tasks=DB::table('tasks')->orderBy('name')->get();
         return view('tasks.index',compact('task','tasks'));
 
     }
