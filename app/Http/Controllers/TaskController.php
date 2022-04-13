@@ -51,7 +51,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->name = $request->name;
         $task->save();
-        return view('tasks.index',compact('task'))->with('flash_message', 'Student deleted!');
+        return view('tasks.index',compact('task'));
 
     }
 }

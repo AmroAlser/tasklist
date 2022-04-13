@@ -19,9 +19,9 @@
                          </ul>
                      </div>
                  @endif
-                 <form action="{{url('task/update'.$task->id))}}" method="POST" class="form-horizontal">
+                 <form action="{{url('tasks/update/'.$task->id)}}" method="POST" class="form-horizontal">
                      @csrf
-                        @method('PUT')
+                        @method('PATCH')
                      <!-- Task Name -->
                      <div class="form-group">
                          <label for="task-name" class="col-sm-3 control-label">Task</label>
