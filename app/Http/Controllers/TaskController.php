@@ -9,9 +9,9 @@ class TaskController extends Controller
 {
     //
     public function index(){
-      //  $tasks = DB::table('tasks')->get();
+      $tasks = DB::table('tasks')->get();
 
-        $tasks = Task::all();
+      //  $tasks = Task::all();
         return view('tasks.index', compact('tasks'));
     }
     public function show($id)
@@ -21,17 +21,17 @@ class TaskController extends Controller
         return view('show', compact('task'));
     }
     public function store(Request $request){
-      /*  $task = DB::table('tasks')->insert([
+       $task = DB::table('tasks')->insert([
             'name'=>$request->name,
             'created_at' => now(),
             'updated_at'=>now()
-      ]);*/
-      $validated=$request->validate([
-          'name'=>'required|max:15 | min:3|string'
       ]);
-    $task = new Task ();
-    $task ->name = $request->name;
-    $task->save();
+    //   $validated=$request->validate([
+    //       'name'=>'required|max:15 | min:3|string'
+    //   ]);
+    // $task = new Task ();
+    // $task ->name = $request->name;
+    // $task->save();
         return redirect()->back();
     }
     public function delete ($id){
@@ -41,18 +41,22 @@ class TaskController extends Controller
     }
     public function edit($id)
     {
-        $tasks = Task::all();
-        $task = Task::find($id);
+        $tasks = DB::table('tasks')->get();
+        $task = DB::table('tasks')->find($id);
+        //$task = Task::find($id);
 
         return view('tasks.edit', compact('task','tasks'));
     }
 
     public function update(Request $request, $id)
     {
-        $task = Task::find($id);
-        $task->name = $request->name;
-        $task->save();
-        $tasks = Task::all();
+       // $task = Task::find($id);
+
+        $task=DB::table('tasks')
+            ->where('id', '=',$id)
+            ->update(['name' => $request->name]);
+
+        $tasks = DB::table('tasks')->get();
         return view('tasks.index',compact('task','tasks'));
 
     }
