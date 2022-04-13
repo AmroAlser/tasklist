@@ -41,9 +41,10 @@ class TaskController extends Controller
     }
     public function edit($id)
     {
+        $tasks = Task::all();
         $task = Task::find($id);
 
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit', compact('task','tasks'));
     }
 
     public function update(Request $request, $id)
@@ -51,7 +52,8 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->name = $request->name;
         $task->save();
-        return view('tasks.index',compact('task'));
+        $tasks = Task::all();
+        return view('tasks.index',compact('task','tasks'));
 
     }
 }
