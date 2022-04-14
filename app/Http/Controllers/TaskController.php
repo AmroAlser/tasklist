@@ -58,7 +58,7 @@ class TaskController extends Controller
             ->update(['name' => $request->name]);
 
        $tasks=DB::table('tasks')->orderBy('name')->get();
-        return view('tasks.index',compact('task','tasks'));
+        return redirect('/');
 
     }
 }
