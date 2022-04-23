@@ -41,7 +41,7 @@ class TaskController extends Controller
     {
         // DB::table('tasks')->where('id', '=', $id)->delete();
         Task::find($id)->delete();
-        return redirect()->back();
+        return redirect('/');
     }
     public function edit($id)
     {
